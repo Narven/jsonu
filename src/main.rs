@@ -32,7 +32,17 @@ fn main() {
     "#;
 
     let parsed: Article = read_json_typed(json);
-    println!("{:?}", parsed)
+    println!("{:?}", parsed);
+
+    let article: Article = Article {
+        article: String::from("foo"),
+        author: String::from("Pedro"),
+        paragraph: vec![Paragraph {
+            name: String::from("hello"),
+        }],
+    };
+    let json = serde_json::to_string(&article).unwrap();
+    println!("{:?}", json);
 }
 
 fn read_json_typed(raw_json: &str) -> Article {
